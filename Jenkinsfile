@@ -24,7 +24,7 @@ pipeline {
     }
 
     environment {
-        DOCKER_HUB_USER   = 'moustaphisene'
+        DOCKER_HUB_USER   = 'fatoumatakm'
         APP_IMAGE         = "${DOCKER_HUB_USER}/poc-keycloak-app"
         SVC_IMAGE         = "${DOCKER_HUB_USER}/poc-keycloak-service"
         IMAGE_TAG         = "v${BUILD_NUMBER}"
@@ -252,6 +252,7 @@ pipeline {
                     }
                     post {
                         always {
+
                             archiveArtifacts artifacts: 'trivy-image-app.txt', allowEmptyArchive: true
                         }
                     }
