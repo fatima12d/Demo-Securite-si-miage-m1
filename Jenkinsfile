@@ -119,17 +119,20 @@ pipeline {
                     }
                 }
             }
-            post {
-                always {
-                    dependencyCheckPublisher(
-                        pattern: '**/target/dependency-check-report.xml',
-                        failedTotalCritical: 1,
-                        unstableTotalHigh: 5
-                    )
-                }
-            }
-        }
+           post {
+               always {
+                   dependencyCheckPublisher(
+                       pattern: '**/target/dependency-check-report.xml',
+                       failedTotalCritical: 1,
+                       unstableTotalHigh: 5
+                   )
 
+                   archiveArtifacts(
+                       artifacts: '**/target/dependency-check-report.html',
+                       allowEmptyArchive: true
+                   )
+               }
+           }
         // =====================================================================
         // SonarQube — Code & Quality Gate Analysis
         // =====================================================================
